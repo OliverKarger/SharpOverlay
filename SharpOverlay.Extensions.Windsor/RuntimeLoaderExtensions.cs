@@ -8,7 +8,7 @@ namespace SharpOverlay.Extensions.Windsor;
 /// <summary>
 ///		Extensions for the <see cref="IRuntimeLoader"/> to be used with Castle.Windsor
 /// </summary>
-public static class RemoteLoaderExtensions
+public static class RuntimeLoaderExtensions
 {
 	#region IWindsorContainer
 
