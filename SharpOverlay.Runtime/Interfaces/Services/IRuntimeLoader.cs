@@ -5,7 +5,7 @@ namespace SharpOverlay.Runtime.Interfaces.Services;
 /// <summary>
 ///		Interface for load external DLLs at Runtime
 /// </summary>
-public interface IRuntimeLoader
+public interface IRuntimeLoader : IDisposable
 {
 	/// <summary>
 	///    Loads a DLL into the current AppDomain

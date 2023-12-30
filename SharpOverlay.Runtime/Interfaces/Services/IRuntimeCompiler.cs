@@ -6,7 +6,7 @@ namespace SharpOverlay.Runtime.Interfaces.Services;
 ///		Used to Compile Source Files to DLLs at Runtime<para/>
 ///		WARNING: The DLLs will be locked to the current Process until the AppDomain is unloaded<para/>
 /// </summary>
-public interface IRuntimeCompiler 
+public interface IRuntimeCompiler : IDisposable
 {
 	/// <summary>
 	///		Compile File to DLL
