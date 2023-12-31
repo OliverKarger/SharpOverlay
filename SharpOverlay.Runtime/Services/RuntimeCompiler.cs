@@ -25,9 +25,6 @@ public class RuntimeCompiler : IRuntimeCompiler
 	///	<inheritdoc/>
 	public CompilerResult CompileFile(string path, string? outAssembly = null)
 	{
-		CompilerResult result = new CompilerResult();
-		result.SourceFile = path;
-
 		string sourceFilename = Path.GetFileNameWithoutExtension(path);
 		string sourceDirectory = Path.GetDirectoryName(path) ?? throw new InvalidOperationException();
 
@@ -39,14 +36,11 @@ public class RuntimeCompiler : IRuntimeCompiler
 		_cSharpScriptExecution.OutputAssembly = outAssembly;
 		_cSharpScriptExecution.CompileAssembly(path, true);
 
-		result.DLLFile = outAssembly;
-		if (_cSharpScriptExecution.Error)
-		{
-			result.Error = _cSharpScriptExecution.Error;
-			result.Errors = new string[] { _cSharpScriptExecution.ErrorMessage };
-		}
-
-		return result;
+		return new CompilerResult(
+			path, 
+			outAssembly,
+			_cSharpScriptExecution.Error,
+			_cSharpScriptExecution.Error ? new string[] { _cSharpScriptExecution.ErrorMessage } : null);
 	}
 
 	///	<inheritdoc/>

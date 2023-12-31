@@ -1,4 +1,6 @@
-﻿namespace SharpOverlay.Runtime.Types;
+﻿using System.Reflection;
+
+namespace SharpOverlay.Runtime.Types;
 
 /// <summary>
 ///		Result of a Loader Operation
@@ -8,23 +10,28 @@ public class LoaderResult
 	/// <summary>
 	///		Path to DLL File
 	/// </summary>
-	public string DLLFile;
+	public readonly string DLLFile;
 
 	/// <summary>
 	///		Type of loaded Class
 	/// </summary>
-	public Type Type;
+	public readonly Type Type;
+
+	/// <summary>
+	///		Assembly
+	/// </summary>
+	public readonly Assembly Assembly;
 
 	/// <summary>
 	///		Error Flag
 	/// </summary>
-	public bool Error;
+	public readonly bool Error;
 
 	/// <summary>
 	///		List of Errors<para/>
 	///		NULL if <see cref="Error"/> is false
 	/// </summary>
-	public string[]? Errors;
+	public readonly string[]? Errors;
 
 	/// <summary>
 	///		Constructor
@@ -41,12 +48,14 @@ public class LoaderResult
 	/// <param name="errors">
 	///		List of Errors
 	/// </param>
-	public LoaderResult(string dllFile, Type type, bool error, string[]? errors)
+	public LoaderResult(string dllFile, Type type, Assembly assembly, bool error, string[]? errors)
 	{
 		DLLFile = dllFile;
 		Type = type;
+		Assembly = assembly;
 		Error = error;
 		Errors = errors;
+
 	}
 
 	/// <summary>
@@ -58,10 +67,11 @@ public class LoaderResult
 	/// <param name="type">
 	///		Type of loaded Class
 	/// </param>
-	public LoaderResult(string dllFile, Type type)
+	public LoaderResult(string dllFile, Type type, Assembly assembly)
 	{
 		DLLFile = dllFile;
 		Type = type;
+		Assembly = assembly;
 		Error = false;
 		Errors = null;
 	}
